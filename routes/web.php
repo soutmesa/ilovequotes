@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('users/', 'userController@index');
+Route::resource('users/create', 'userController@create');
+Route::resource('users/edit', 'userController@edit');
