@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\User;
 
 class userController extends Controller
 {
@@ -13,7 +15,8 @@ class userController extends Controller
      */
     public function index()
     {
-        return view("users.index")->with("name", "Mesa");
+        $users = DB::table('users')->get();
+        return view('users.index', ['users' => $users]);
     }
 
     /**
@@ -34,7 +37,12 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'user_name' => 'required|max:100',
+            'email' => 'required|email|max:100|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        return User::create($request->all());
     }
 
     /**

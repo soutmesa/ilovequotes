@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('users/', 'userController@index');
+// users rout
+Route::resource('/users', 'userController@index');
 Route::resource('users/create', 'userController@create');
+// Route::resource('users/store', 'userController@store');
+Route::post('users/store', 'userController@store');
 Route::resource('users/edit', 'userController@edit');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+// posts rout
+Route::resource('/posts', 'postController@index');
+Route::resource('/posts/create', 'postController@create');
+
+// music rout

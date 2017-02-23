@@ -177,6 +177,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Zizaco\Entrust\EntrustServiceProvider::class, // to remove is needed
 
     ],
 
@@ -225,6 +226,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class, // to remove is needed
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class, // to remove is needed
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class, // to remove is needed
 
     ],
 
