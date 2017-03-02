@@ -18,7 +18,6 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production-plugins.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-skins.min.css')}}">
-        <!-- <link rel="stylesheet" type="text/css" href="{{url('css/select2.min.css')}}"> -->
 
         <!-- SmartAdmin RTL Support -->
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-rtl.min.css')}}"> 
@@ -145,7 +144,7 @@
                                 
                                 <header>
                                     <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                                    <h2>Update Post </h2>             
+                                    <h2>Create Post </h2>             
                                     
                                 </header>
 
@@ -162,35 +161,34 @@
                                     <!-- widget content -->
                                     <div class="widget-body no-padding">
                                         
-                                        <form id="checkout-form" class="smart-form" method="PUT" action="{{url('posts/update', $post->id)}}">
+                                        <form id="checkout-form" class="smart-form" method="PUT" action="{{url('roles/update', $role->id)}}">
                                             {{ csrf_field() }}
                                             <header>
                                                 Registration form
                                             </header>
-                                            <input type="hidden" id="{{$post->id}}" name="id" value="{{$post->id}}"/>
+                                            <input type="hidden" id="{{$role->id}}" name="id" value="{{$role->id}}"/>
                                             <fieldset>
 
                                                 <div class="row">
                                                     <section class="col col-6">
                                                         <label class="input"> <i class="icon-append fa fa-tag"></i>
-                                                            <input type="text" name="title" value="{{$post->title}}" placeholder="Please type the title...">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the First Name</b> </label>
+                                                            <input type="text" name="name" placeholder="role name" value="{{$role->name}}">
+                                                            <b class="tooltip tooltip-bottom-right">Need to enter the Role Name</b> </label>
                                                         </label>
                                                     </section>
                                                     <section class="col col-6">
                                                         <label class="input"> <i class="icon-append fa fa-book"></i>
-                                                            <input type="text" name="content" placeholder="Please type here..." value="{{$post->content}}">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the Last Name</b> </label>
+                                                            <input type="text" name="display_name" placeholder="Display Name" value="{{$role->display_name}}">
+                                                            <b class="tooltip tooltip-bottom-right">Need to enter the Display Name</b> </label>
                                                         </label>
                                                     </section>
                                                 </div>
+
                                                 <div class="row">
-                                                    <section class="col col-6 form-group">
-                                                        <select style="width:100%" class="js-example-placeholder-multiple select2" name="categories[]" multiple="multiple">
-                                                            @foreach($categories as $category)
-                                                            <option value="{{$category->id}}" >{{$category->cate_name}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                    <section class="col col-6">
+                                                        <label class="textarea">                                        
+                                                            <textarea rows="3" name="description" placeholder="describe here...">{{$role->description}}</textarea> 
+                                                        </label>
                                                     </section>
                                                 </div>
 
@@ -381,8 +379,7 @@
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         
         $(document).ready(function() {
-            $(".js-example-placeholder-multiple").select2();
-            $(".js-example-placeholder-multiple").select2().val({{$post->categories()->getRelatedIds()}}).trigger('change');
+            
             pageSetUp();
 
             var errorClass = 'invalid';
@@ -402,21 +399,15 @@
 
             // Rules for form validation
                 rules : {
-                    title : {
-                        required : true
-                    },
-                    content : {
+                    name : {
                         required : true
                     }
                 },
         
                 // Messages for form validation
                 messages : {
-                    first_name : {
-                        required : 'Please enter the title'
-                    },
-                    last_name : {
-                        required : 'Please enter the content'
+                    name : {
+                        required : 'Please enter the role name'
                     }
                 },
         

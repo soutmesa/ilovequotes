@@ -284,7 +284,13 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
     );
 
     public static $classMap = array (
+        'AlterCategoriesAddColums' => __DIR__ . '/../..' . '/database/migrations/2017_03_01_042317_alter_categories_add_colums.php',
+        'AlterPostsAddCategoryIdColumn' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_073544_alter_posts_add_category_id_column.php',
+        'AlterUsersAddRoleIdColumn' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_074332_alter_users_add_role_id_column.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+        'CreateTableCategoriesPosts' => __DIR__ . '/../..' . '/database/migrations/2017_03_01_065420_create_table_categories_posts.php',
+        'CreateTableCategory' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_073818_create_table_category.php',
+        'CreateTablePosts' => __DIR__ . '/../..' . '/database/migrations/2017_02_23_074157_create_table_posts.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'EntrustSetupTables' => __DIR__ . '/../..' . '/database/migrations/2017_02_01_073644_entrust_setup_tables.php',

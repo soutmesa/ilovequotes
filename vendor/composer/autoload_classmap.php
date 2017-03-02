@@ -6,7 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AlterCategoriesAddColums' => $baseDir . '/database/migrations/2017_03_01_042317_alter_categories_add_colums.php',
+    'AlterPostsAddCategoryIdColumn' => $baseDir . '/database/migrations/2017_02_28_073544_alter_posts_add_category_id_column.php',
+    'AlterUsersAddRoleIdColumn' => $baseDir . '/database/migrations/2017_02_28_074332_alter_users_add_role_id_column.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateTableCategoriesPosts' => $baseDir . '/database/migrations/2017_03_01_065420_create_table_categories_posts.php',
+    'CreateTableCategory' => $baseDir . '/database/migrations/2017_02_28_073818_create_table_category.php',
+    'CreateTablePosts' => $baseDir . '/database/migrations/2017_02_23_074157_create_table_posts.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'EntrustSetupTables' => $baseDir . '/database/migrations/2017_02_01_073644_entrust_setup_tables.php',

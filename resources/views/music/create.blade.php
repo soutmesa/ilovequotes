@@ -18,7 +18,6 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production-plugins.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-skins.min.css')}}">
-        <!-- <link rel="stylesheet" type="text/css" href="{{url('css/select2.min.css')}}"> -->
 
         <!-- SmartAdmin RTL Support -->
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-rtl.min.css')}}"> 
@@ -145,7 +144,7 @@
                                 
                                 <header>
                                     <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                                    <h2>Update Post </h2>             
+                                    <h2>Registration form </h2>             
                                     
                                 </header>
 
@@ -162,40 +161,115 @@
                                     <!-- widget content -->
                                     <div class="widget-body no-padding">
                                         
-                                        <form id="checkout-form" class="smart-form" method="PUT" action="{{url('posts/update', $post->id)}}">
+                                        <form id="checkout-form" class="smart-form" method="POST" action="{{url('users/store')}}">
                                             {{ csrf_field() }}
                                             <header>
                                                 Registration form
                                             </header>
-                                            <input type="hidden" id="{{$post->id}}" name="id" value="{{$post->id}}"/>
+
                                             <fieldset>
 
                                                 <div class="row">
                                                     <section class="col col-6">
-                                                        <label class="input"> <i class="icon-append fa fa-tag"></i>
-                                                            <input type="text" name="title" value="{{$post->title}}" placeholder="Please type the title...">
+                                                        <label class="input"> <i class="icon-append fa fa-user"></i>
+                                                            <input type="text" name="first_name" placeholder="First name">
                                                             <b class="tooltip tooltip-bottom-right">Need to enter the First Name</b> </label>
                                                         </label>
                                                     </section>
                                                     <section class="col col-6">
-                                                        <label class="input"> <i class="icon-append fa fa-book"></i>
-                                                            <input type="text" name="content" placeholder="Please type here..." value="{{$post->content}}">
+                                                        <label class="input"> <i class="icon-append fa fa-user"></i>
+                                                            <input type="text" name="last_name" placeholder="Last name">
                                                             <b class="tooltip tooltip-bottom-right">Need to enter the Last Name</b> </label>
                                                         </label>
                                                     </section>
                                                 </div>
+
                                                 <div class="row">
-                                                    <section class="col col-6 form-group">
-                                                        <select style="width:100%" class="js-example-placeholder-multiple select2" name="categories[]" multiple="multiple">
-                                                            @foreach($categories as $category)
-                                                            <option value="{{$category->id}}" >{{$category->cate_name}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-append fa fa-user"></i>
+                                                            <input type="text" name="user_name" placeholder="Username">
+                                                            <b class="tooltip tooltip-bottom-right">Needed to enter the website</b> </label>
+                                                    </section>
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-append fa fa-envelope-o"></i>
+                                                            <input type="email" name="email" placeholder="Email address">
+                                                            <b class="tooltip tooltip-bottom-right">Needed to verify your account</b> </label>
+                                                    </section>
+                                                </div>
+
+                                                <div class="row">
+                                                    <section class="col col-6">
+                                                        <label class="select">
+                                                            <select name="gender">
+                                                                <option value="0" selected="" disabled="">Gender</option>
+                                                                <option value="Male">Male</option>
+                                                                <option value="Female">Female</option>
+                                                            </select> <i></i> </label>
+                                                    </section>
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-append fa fa-calendar"></i>
+                                                            <input type="text" name="date_of_birth" placeholder="Date of birth" class="datepicker" data-dateformat='dd/mm/yy'>
+                                                        </label>
+                                                    </section>
+                                                </div>
+
+                                                <div class="row">
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                                            <input type="password" name="password" placeholder="Password" id="password">
+                                                            <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+                                                    </section>
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                                            <input type="password" name="passwordConfirm" placeholder="Confirm password">
+                                                            <b class="tooltip tooltip-bottom-right">Don't forget your password</b> </label>
+                                                    </section>
+                                                </div>
+
+                                                <div class="row">
+                                                    <section class="col col-6">
+                                                        <label class="select">
+                                                            <select name="marital_status">
+                                                                <option value="0" selected="" disabled="">Marital Status</option>
+                                                                <option value="Married">Married</option>
+                                                                <option value="Divorced">Divorced</option>
+                                                                <option value="Single">Single</option>
+                                                            </select> <i></i> </label>
+                                                    </section>
+                                                    <section class="col col-6">
+                                                        <label class="input"> <i class="icon-prepend fa fa-phone"></i>
+                                                            <input type="tel" name="phone" placeholder="Phone" data-mask="(999) 999-9999">
+                                                        </label>
+                                                    </section>
+                                                </div>
+
+                                                <div class="row">
+                                                    <section class="col col-6">
+                                                        <label class="select">
+                                                            <select name="role">
+                                                                <option value="0" selected="" disabled="">Roles</option>
+                                                                <option value="Admin">Admin</option>
+                                                                <option value="Editor">Editor</option>
+                                                                <option value="Visitor">Visitor</option>
+                                                            </select> <i></i> </label>
+                                                    </section>
+                                                    <section class="col col-6">
+                                                        <label class="textarea">                                        
+                                                            <textarea rows="3" name="address" placeholder="Place of birth"></textarea> 
+                                                        </label>
+                                                    </section>
+                                                </div>
+
+                                                <div class="row">
+                                                    <section class="col col-6">
+                                                        <div class="input input-file">
+                                                            <span class="button"><input id="file2" type="file" name="profile" onchange="this.parentNode.nextSibling.value = this.value">Browse</span><input type="text" placeholder="Include profile" readonly="">
+                                                        </div>
                                                     </section>
                                                 </div>
 
                                                 <footer>
-                                                    <input type="submit" class="btn btn-primary" value="Update">
+                                                    <input type="submit" class="btn btn-primary" value="Create">
                                                 </footer>
 
                                             </fieldset>
@@ -284,7 +358,28 @@
         Note: These tiles are completely responsive,
         you can add as many as you like
         -->
-        @include('layouts.partials.shortcut')
+        <div id="shortcut">
+            <ul>
+                <li>
+                    <a href="inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+                </li>
+                <li>
+                    <a href="calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+                </li>
+                <li>
+                    <a href="gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+                </li>
+                <li>
+                    <a href="invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+                </li>
+                <li>
+                    <a href="gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
+                </li>
+            </ul>
+        </div>
         <!-- END SHORTCUT AREA -->
 
         <!--================================================== -->
@@ -381,8 +476,7 @@
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         
         $(document).ready(function() {
-            $(".js-example-placeholder-multiple").select2();
-            $(".js-example-placeholder-multiple").select2().val({{$post->categories()->getRelatedIds()}}).trigger('change');
+            
             pageSetUp();
 
             var errorClass = 'invalid';
@@ -402,10 +496,43 @@
 
             // Rules for form validation
                 rules : {
-                    title : {
+                    first_name : {
                         required : true
                     },
-                    content : {
+                    last_name : {
+                        required : true
+                    },
+                    user_name : {
+                        required : true
+                    },
+                    email : {
+                        required : true,
+                        email : true
+                    },
+                    phone : {
+                        required : true
+                    },
+                    gender : {
+                        required : true
+                    },
+                    password : {
+                        required : true,
+                        minlength : 3,
+                        maxlength : 20
+                    },
+                    passwordConfirm : {
+                        required : true,
+                        minlength : 3,
+                        maxlength : 20,
+                        equalTo : '#password'
+                    },
+                    date_of_birth : {
+                        required : true
+                    },
+                    roles : {
+                        required : true
+                    },
+                    address : {
                         required : true
                     }
                 },
@@ -413,10 +540,39 @@
                 // Messages for form validation
                 messages : {
                     first_name : {
-                        required : 'Please enter the title'
+                        required : 'Please enter your first name'
                     },
                     last_name : {
-                        required : 'Please enter the content'
+                        required : 'Please enter your last name'
+                    },
+                    user_name : {
+                        required : 'Please enter user name'
+                    },
+                    email : {
+                        required : 'Please enter your email address',
+                        email : 'Please enter a VALID email address'
+                    },
+                    phone : {
+                        required : 'Please enter your phone number'
+                    },
+                    gender : {
+                        required : 'Please select your gender'
+                    },
+                    password : {
+                        required : 'Please enter your password'
+                    },
+                    passwordConfirm : {
+                        required : 'Please enter your password one more time',
+                        equalTo : 'Please enter the same password as above'
+                    },
+                    date_of_birth : {
+                        required : 'Please enter code'
+                    },
+                    roles : {
+                        required : 'Please select a role'
+                    },
+                    address : {
+                        required : 'Please enter your full address'
                     }
                 },
         

@@ -18,7 +18,6 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production-plugins.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-skins.min.css')}}">
-        <!-- <link rel="stylesheet" type="text/css" href="{{url('css/select2.min.css')}}"> -->
 
         <!-- SmartAdmin RTL Support -->
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-rtl.min.css')}}"> 
@@ -54,9 +53,56 @@
         <link rel="apple-touch-startup-image" href="{{url('img/splash/iphone.png')}}" media="screen and (max-device-width: 320px)">
 
     </head>
-    <body class="">
     
+    <!--
+
+    TABLE OF CONTENTS.
+    
+    Use search to find needed section.
+    
+    ===================================================================
+    
+    |  01. #CSS Links                |  all CSS links and file paths  |
+    |  02. #FAVICONS                 |  Favicon links and file paths  |
+    |  03. #GOOGLE FONT              |  Google font link              |
+    |  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
+    |  05. #BODY                     |  body tag                      |
+    |  06. #HEADER                   |  header tag                    |
+    |  07. #PROJECTS                 |  project lists                 |
+    |  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
+    |  09. #MOBILE                   |  mobile view dropdown          |
+    |  10. #SEARCH                   |  search field                  |
+    |  11. #NAVIGATION               |  left panel & navigation       |
+    |  12. #RIGHT PANEL              |  right panel userlist          |
+    |  13. #MAIN PANEL               |  main panel                    |
+    |  14. #MAIN CONTENT             |  content holder                |
+    |  15. #PAGE FOOTER              |  page footer                   |
+    |  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
+    |  17. #PLUGINS                  |  all scripts and plugins       |
+    
+    ===================================================================
+    
+    -->
+    
+    <!-- #BODY -->
+    <!-- Possible Classes
+
+        * 'smart-style-{SKIN#}'
+        * 'smart-rtl'         - Switch theme mode to RTL
+        * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+        * 'no-menu'           - Hides the menu completely
+        * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+        * 'fixed-header'      - Fixes the header
+        * 'fixed-navigation'  - Fixes the main menu
+        * 'fixed-ribbon'      - Fixes breadcrumb
+        * 'fixed-page-footer' - Fixes footer
+        * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+    -->
+    <body class="">
+
+        <!-- HEADER -->
         @include('layouts.partials.head')
+        <!-- END HEADER -->
 
         @include('layouts.partials.leftsidebar')
 
@@ -75,6 +121,7 @@
                 <!-- breadcrumb -->
                 <ol class="breadcrumb">
                     <li>Home</li><li>Tables</li><li>Data Tables</li>
+                    
                 </ol>
                 <!-- end breadcrumb -->
 
@@ -105,120 +152,141 @@
                             </span>
                         </h1>
                     </div>
-                    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-                        <ul id="sparks" class="">
-                            <li class="sparks-info">
-                                <h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-                                <div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-                                    1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-                                </div>
-                            </li>
-                            <li class="sparks-info">
-                                <h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-                                <div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
-                                    110,150,300,130,400,240,220,310,220,300, 270, 210
-                                </div>
-                            </li>
-                            <li class="sparks-info">
-                                <h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-                                <div class="sparkline txt-color-greenDark hidden-mobile hidden-md hidden-sm">
-                                    110,150,300,130,400,240,220,310,220,300, 270, 210
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    
                 </div>
+
+            @if ($message = Session::get('created'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p>{{ $message }}</p>
+                </div>
+                <script type="text/javascript">
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove(); 
+                        });
+                    }, 5000);
+                </script>
+            @elseif ($message = Session::get('updated'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p>{{ $message }}</p>
+                </div>
+                <script type="text/javascript">
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove(); 
+                        });
+                    }, 4000);
+                </script>
+            @elseif ($message = Session::get('deleted'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p>{{ $message }}</p>
+                </div>
+                <script type="text/javascript">
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove(); 
+                        });
+                    }, 4000);
+                </script>
+            @endif
                 
                 <!-- widget grid -->
                 <section id="widget-grid" class="">
-
-                    <!-- START ROW -->
-
+                
+                    <!-- row -->
                     <div class="row">
-
-                        
-                        <!-- NEW COL START -->
-                        <article class="col-sm-12 col-md-12 col-lg-12">
-                            
+                
+                        <!-- NEW WIDGET START -->
+                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                
                             <!-- Widget ID (each widget will need unique ID)-->
-                            <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-custombutton="false">
-                                
+                            <div class="jarviswidget jarviswidget-color-darken" id="wid-id-0" data-widget-editbutton="false">
+                                <!-- widget options:
+                                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+                
+                                data-widget-colorbutton="false"
+                                data-widget-editbutton="false"
+                                data-widget-togglebutton="false"
+                                data-widget-deletebutton="false"
+                                data-widget-fullscreenbutton="false"
+                                data-widget-custombutton="false"
+                                data-widget-collapsed="true"
+                                data-widget-sortable="false"
+                
+                                -->
                                 <header>
-                                    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                                    <h2>Update Post </h2>             
-                                    
+                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                    <h2>Standard Data Tables </h2>
+                
                                 </header>
-
+                
                                 <!-- widget div-->
                                 <div>
-                                    
+                
                                     <!-- widget edit box -->
                                     <div class="jarviswidget-editbox">
                                         <!-- This area used as dropdown edit box -->
-                                        
+                
                                     </div>
                                     <!-- end widget edit box -->
-                                    
+                
                                     <!-- widget content -->
                                     <div class="widget-body no-padding">
-                                        
-                                        <form id="checkout-form" class="smart-form" method="PUT" action="{{url('posts/update', $post->id)}}">
-                                            {{ csrf_field() }}
-                                            <header>
-                                                Registration form
-                                            </header>
-                                            <input type="hidden" id="{{$post->id}}" name="id" value="{{$post->id}}"/>
-                                            <fieldset>
+                
+                                        <table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+                                            <thead>                         
+                                                <tr>
+                                                    <th data-hide="phone">ID</th>
+                                                    <th data-class="expand"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> Name</th>
+                                                    <th data-hide="phone"><i class="fa fa-fw fa-envelope text-muted hidden-md hidden-sm hidden-xs"></i> Display Name</th>
+                                                    <th><i class="fa fa-fw fa-venus-mars txt-color-blue hidden-md hidden-sm hidden-xs"></i> Description</th>
+                                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Created</th>
+                                                    <th data-hide="phone,tablet"><i class="fa fa-fw fa-calendar text-muted hidden-md hidden-sm hidden-xs"></i> Updated</th>
+                                                    <th data-hide="" align="center">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($roles as $role)
+                                                <tr>
+                                                    <td>{{ $role->id }}</td>
+                                                    <td>{{ $role->name }}</td>
+                                                    <td>{{ $role->display_name }}</td>
+                                                    <td>{{ $role->description }}</td>
+                                                    <td>{{ $role->created_at }}</td>
+                                                    <td>{{ $role->updated_at }}</td>
+                                                    <td align="center">
+                                                        <a href="{{ url('roles/edit', $role->id) }}"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a> | 
+                                                        <a href="{{ url('roles/delete', $role->id) }}"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
 
-                                                <div class="row">
-                                                    <section class="col col-6">
-                                                        <label class="input"> <i class="icon-append fa fa-tag"></i>
-                                                            <input type="text" name="title" value="{{$post->title}}" placeholder="Please type the title...">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the First Name</b> </label>
-                                                        </label>
-                                                    </section>
-                                                    <section class="col col-6">
-                                                        <label class="input"> <i class="icon-append fa fa-book"></i>
-                                                            <input type="text" name="content" placeholder="Please type here..." value="{{$post->content}}">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the Last Name</b> </label>
-                                                        </label>
-                                                    </section>
-                                                </div>
-                                                <div class="row">
-                                                    <section class="col col-6 form-group">
-                                                        <select style="width:100%" class="js-example-placeholder-multiple select2" name="categories[]" multiple="multiple">
-                                                            @foreach($categories as $category)
-                                                            <option value="{{$category->id}}" >{{$category->cate_name}}</option>
-                                                            @endforeach
-                                                        </select>
-                                                    </section>
-                                                </div>
-
-                                                <footer>
-                                                    <input type="submit" class="btn btn-primary" value="Update">
-                                                </footer>
-
-                                            </fieldset>
-
-                                        </form>                     
-                                        
                                     </div>
                                     <!-- end widget content -->
-                                    
+                
                                 </div>
                                 <!-- end widget div -->
-                                
+                
                             </div>
                             <!-- end widget -->
+                
                         </article>
-                        <!-- END COL -->        
-
+                        <!-- WIDGET END -->
+                
                     </div>
-
-                    <!-- END ROW -->
-
+                
+                    <!-- end row -->
+                
+                    <!-- end row -->
+                
                 </section>
                 <!-- end widget grid -->
+
             </div>
             <!-- END MAIN CONTENT -->
 
@@ -313,9 +381,6 @@
         <!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
         <script src="{{url('js/plugin/jquery-touch/jquery.ui.touch-punch.min.js')}}"></script> 
 
-        <!-- JQUERY VALIDATE -->
-        <script src="{{url('js/plugin/jquery-validate/jquery.validate.min.js')}}"></script>
-
         <!-- BOOTSTRAP JS -->
         <script src="{{url('js/bootstrap/bootstrap.min.js')}}"></script>
 
@@ -381,50 +446,8 @@
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         
         $(document).ready(function() {
-            $(".js-example-placeholder-multiple").select2();
-            $(".js-example-placeholder-multiple").select2().val({{$post->categories()->getRelatedIds()}}).trigger('change');
-            pageSetUp();
-
-            var errorClass = 'invalid';
-            var errorElement = 'em';
             
-            var $checkoutForm = $('#checkout-form').validate({
-                errorClass      : errorClass,
-                errorElement    : errorElement,
-                highlight: function(element) {
-                    $(element).parent().removeClass('state-success').addClass("state-error");
-                    $(element).removeClass('valid');
-                },
-                unhighlight: function(element) {
-                    $(element).parent().removeClass("state-error").addClass('state-success');
-                    $(element).addClass('valid');
-                },
-
-            // Rules for form validation
-                rules : {
-                    title : {
-                        required : true
-                    },
-                    content : {
-                        required : true
-                    }
-                },
-        
-                // Messages for form validation
-                messages : {
-                    first_name : {
-                        required : 'Please enter the title'
-                    },
-                    last_name : {
-                        required : 'Please enter the content'
-                    }
-                },
-        
-                // Do not change code below
-                errorPlacement : function(error, element) {
-                    error.insertAfter(element.parent());
-                }
-            });
+            pageSetUp();
             
             /* // DOM Position key index //
         
@@ -508,7 +531,7 @@
             });
             
             // custom toolbar
-            $("div.toolbar").html('<div class="text-right"><img src="{{url("img/logo.png")}}" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+            $("div.toolbar").html('<div class="text-right"><img src="img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
                    
             // Apply the filter
             $("#datatable_fixed_column thead th input[type=text]").on( 'keyup change', function () {

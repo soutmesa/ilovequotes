@@ -9,7 +9,7 @@ Left panel : Navigation area -->
                     <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
                         <img src="{{url('img/avatars/sunny.png')}}" alt="me" class="online" /> 
                         <span>
-                            <!-- {{Auth::user()->user_name}} -->
+                            {{ucfirst(Auth::user()->user_name)}}
                         </span>
                         <i class="fa fa-angle-down"></i>
                     </a> 
@@ -27,11 +27,13 @@ Left panel : Navigation area -->
                 -->
 
                 <ul>
+                
                     <li class="active">
                         <a href="{{ url('/home') }}" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a>  
                     </li>
+                    
                     <li>
-                        <a href="#"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">Users Management</span></a>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">Users</span></a>
                         <ul>
                             <li>
                                 <a href="{{ url('/users/create') }}">Add New</a>
@@ -41,6 +43,19 @@ Left panel : Navigation area -->
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-cogs"></i> <span class="menu-item-parent">Roles</span></a>
+                        <ul>
+                            <li>
+                                <a href="{{ url('/roles/create') }}">Add New</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/roles') }}">All Roles</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li>
                         <a href="#"><i class="fa fa-lg fa-fw fa-tags"></i> <span class="menu-item-parent">Posts</span></a>
                         <ul>
@@ -52,6 +67,19 @@ Left panel : Navigation area -->
                             </li>
                         </ul>
                     </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-lg fa-fw fa-paw"></i> <span class="menu-item-parent">Categories</span></a>
+                        <ul>
+                            <li>
+                                <a href="{{ url('/categories/create') }}">Add New</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/categories') }}">All Categories</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
                     <li>
                         <a href="#"><i class="fa fa-lg fa-fw fa-music"></i> <span class="menu-item-parent">Music</span></a>
                         <ul>
@@ -63,6 +91,7 @@ Left panel : Navigation area -->
                             </li>
                         </ul>
                     </li>
+                    
                 </ul>
             </nav>
             

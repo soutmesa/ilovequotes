@@ -18,7 +18,6 @@
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production-plugins.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production.min.css')}}">
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-skins.min.css')}}">
-        <!-- <link rel="stylesheet" type="text/css" href="{{url('css/select2.min.css')}}"> -->
 
         <!-- SmartAdmin RTL Support -->
         <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-rtl.min.css')}}"> 
@@ -128,7 +127,16 @@
                         </ul>
                     </div>
                 </div>
-                
+
+                @if($errors->all())
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+                @endif
+
                 <!-- widget grid -->
                 <section id="widget-grid" class="">
 
@@ -145,10 +153,8 @@
                                 
                                 <header>
                                     <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
-                                    <h2>Update Post </h2>             
-                                    
+                                    <h2>create form </h2>
                                 </header>
-
                                 <!-- widget div-->
                                 <div>
                                     
@@ -162,40 +168,28 @@
                                     <!-- widget content -->
                                     <div class="widget-body no-padding">
                                         
-                                        <form id="checkout-form" class="smart-form" method="PUT" action="{{url('posts/update', $post->id)}}">
+                                        <form id="checkout-form" class="smart-form" method="POST" action="{{url('categories/store')}}">
                                             {{ csrf_field() }}
                                             <header>
-                                                Registration form
+                                                create form
                                             </header>
-                                            <input type="hidden" id="{{$post->id}}" name="id" value="{{$post->id}}"/>
                                             <fieldset>
 
                                                 <div class="row">
                                                     <section class="col col-6">
                                                         <label class="input"> <i class="icon-append fa fa-tag"></i>
-                                                            <input type="text" name="title" value="{{$post->title}}" placeholder="Please type the title...">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the First Name</b> </label>
-                                                        </label>
+                                                            <input type="text" name="cate_name" placeholder="category name" id="cate_name">
+                                                            <b class="tooltip tooltip-bottom-right">Please enter category name</b> </label>
                                                     </section>
                                                     <section class="col col-6">
-                                                        <label class="input"> <i class="icon-append fa fa-book"></i>
-                                                            <input type="text" name="content" placeholder="Please type here..." value="{{$post->content}}">
-                                                            <b class="tooltip tooltip-bottom-right">Need to enter the Last Name</b> </label>
-                                                        </label>
-                                                    </section>
-                                                </div>
-                                                <div class="row">
-                                                    <section class="col col-6 form-group">
-                                                        <select style="width:100%" class="js-example-placeholder-multiple select2" name="categories[]" multiple="multiple">
-                                                            @foreach($categories as $category)
-                                                            <option value="{{$category->id}}" >{{$category->cate_name}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <label class="input"> <i class="icon-append fa fa-tag"></i>
+                                                            <input type="text" name="display_name" placeholder="Display name" id="display_name">
+                                                            <b class="tooltip tooltip-bottom-right">Please enter category name</b> </label>
                                                     </section>
                                                 </div>
 
                                                 <footer>
-                                                    <input type="submit" class="btn btn-primary" value="Update">
+                                                    <input type="submit" class="btn btn-primary" value="Create">
                                                 </footer>
 
                                             </fieldset>
@@ -381,8 +375,7 @@
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         
         $(document).ready(function() {
-            $(".js-example-placeholder-multiple").select2();
-            $(".js-example-placeholder-multiple").select2().val({{$post->categories()->getRelatedIds()}}).trigger('change');
+            
             pageSetUp();
 
             var errorClass = 'invalid';
@@ -402,21 +395,21 @@
 
             // Rules for form validation
                 rules : {
-                    title : {
+                    cate_name : {
                         required : true
                     },
-                    content : {
+                    display_name: {
                         required : true
                     }
                 },
         
                 // Messages for form validation
                 messages : {
-                    first_name : {
-                        required : 'Please enter the title'
+                    cate_name : {
+                        required : 'Please enter category name'
                     },
-                    last_name : {
-                        required : 'Please enter the content'
+                    display_name: {
+                        required : 'Please enter display name'
                     }
                 },
         
