@@ -162,6 +162,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -230,7 +231,9 @@ return [
         'role' => \Zizaco\Entrust\Middleware\EntrustRole::class, // to remove is needed
         'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class, // to remove is needed
         'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class, // to remove is needed
-
+        'Form'=> Collective\Html\FormFacade::class,
+        'HTML'=> Collective\Html\HtmlFacade::class
+        
     ],
 
 ];

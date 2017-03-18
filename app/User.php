@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    // use Notifiable;
+    use EntrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -32,12 +34,15 @@ class User extends Authenticatable
         'profile',
     ];
 
-    public function role()
+    public function roles()
     {
-        return $this->belongsTo('App\Role');
+        return $this->belongsToMany('App\Role', 'role_user', 'user_id', 'role_id');
     }
 
-    
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

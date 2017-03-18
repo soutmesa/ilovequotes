@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Role;
 
 class RoleController extends Controller
@@ -26,7 +27,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.create');
+        $permissions = DB::table('permissions')->get();
+        return view('roles.create', compact('permissions'));
     }
 
     /**
@@ -38,8 +40,9 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        Role::create($data);
-        return redirect('roles')->with('created','role is created successfully');
+        $role = Role::create($data);
+        $role->permissions()->sync($request->permissions);
+        return redirect('roles')->with('created','Role is created successfully');
     }
 
     /**
@@ -61,8 +64,9 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        return view('roles.edit', compact('role'));
+        $permissions = DB::table('permissions')->get();
+        $role = Role::with('permissions')->findOrFail($id);
+        return view('roles.edit', ['role' => $role, 'permissions' => $permissions]);
     }
 
     /**
@@ -76,6 +80,7 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
         $role->update($request->all());
+        $role->permissions()->sync($request->permissions);
         return redirect('roles')->with('updated','Role is updated successfully');
     }
 
@@ -87,6 +92,8 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role = Role::findOrFail($id);
+        $role->delete();
+        return redirect('roles')->with('deleted','Role is deleted successfully');
     }
 }

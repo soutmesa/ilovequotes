@@ -10,47 +10,7 @@
             
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <!-- Basic Styles -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/bootstrap.min.css')}}">
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/font-awesome.min.css')}}">
-
-        <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production-plugins.min.css')}}">
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-production.min.css')}}">
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-skins.min.css')}}">
-
-        <!-- SmartAdmin RTL Support -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/smartadmin-rtl.min.css')}}"> 
-
-        <!-- We recommend you use "your_style.css" to override SmartAdmin
-             specific styles this will also ensure you retrain your customization with each SmartAdmin update.
-        <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
-
-        <!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
-        <link rel="stylesheet" type="text/css" media="screen" href="{{url('css/demo.min.css')}}">
-
-        <!-- FAVICONS -->
-        <link rel="shortcut icon" href="{{url('img/favicon/favicon.ico')}}" type="image/x-icon">
-        <link rel="icon" href="{{url('img/favicon/favicon.ico')}}" type="image/x-icon">
-
-        <!-- GOOGLE FONT -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
-
-        <!-- Specifying a Webpage Icon for Web Clip 
-             Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
-        <link rel="apple-touch-icon" href="{{url('img/splash/sptouch-icon-iphone.png')}}">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{url('img/splash/touch-icon-ipad.png')}}">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{url('img/splash/touch-icon-iphone-retina.png')}}">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{url('img/splash/touch-icon-ipad-retina.png')}}">
-        
-        <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        
-        <!-- Startup image for web apps -->
-        <link rel="apple-touch-startup-image" href="{{url('img/splash/ipad-landscape.png')}}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-        <link rel="apple-touch-startup-image" href="{{url('img/splash/ipad-portrait.png')}}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
-        <link rel="apple-touch-startup-image" href="{{url('img/splash/iphone.png')}}" media="screen and (max-device-width: 320px)">
+        @include('layouts.partials.style')
 
     </head>
     <body class="">
@@ -76,17 +36,6 @@
                     <li>Home</li><li>Tables</li><li>Data Tables</li>
                 </ol>
                 <!-- end breadcrumb -->
-
-                <!-- You can also add more buttons to the
-                ribbon for further usability
-
-                Example below:
-
-                <span class="ribbon-button-alignment pull-right">
-                <span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-                <span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-                <span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-                </span> -->
 
             </div>
             <!-- END RIBBON -->
@@ -175,9 +124,12 @@
 												<div class="col-sm-12">
 				
 													<div class="row">
-				
 														<div class="col-sm-3 profile-pic">
-															<img src="{{url('img/avatars/sunny-big.png')}}" alt="demo user">
+															<div class="img-box">
+																
+																<img src="{{url($user->profile!=''?'/img/uploads/'.$user->profile:'/img/uploads/default.png')}}" class="img" alt="demo user">
+																<figcaption><a href="{{url('users/upload', $user->id)}}"><i class="fa fa-user"></i> Edit picture</a></figcaption>
+															</div>
 															<div class="padding-10">
 																<h4 class="font-md"><strong>1,543</strong>
 																<br>
@@ -191,7 +143,11 @@
 														<div class="col-sm-6">
 															<h1>{{ucfirst($user->first_name)}} <span class="semi-bold">{{ucfirst($user->last_name)}}</span>
 															<br>
-															<small> {{ucfirst($user->role)}}, SmartAdmin</small></h1>
+															<small> 
+															@foreach($user->roles as $data)
+															{{ $data['display_name'] }},
+															@endforeach
+															at SmartAdmin</small></h1>
 				
 															<ul class="list-unstyled">
 																<li>
@@ -207,6 +163,16 @@
 																<li>
 																	<p class="text-muted">
 																		<i class="fa fa-calendar"></i>&nbsp;&nbsp;<span class="txt-color-darken">Free after <a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Create an Appointment">4:30 PM</a></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-cog"></i>&nbsp;&nbsp;<span class="txt-color-darken"><a href="{{url('users/password', $user->id)}}" rel="tooltip" title="" data-placement="top" data-original-title="Change password">Change password</a></span>
+																	</p>
+																</li>
+																<li>
+																	<p class="text-muted">
+																		<i class="fa fa-info"></i>&nbsp;&nbsp;<span class="txt-color-darken"><a href="{{url('users/password', $user->id)}}" rel="tooltip" title="" data-placement="top" data-original-title="Information">Update info</a></span>
 																	</p>
 																</li>
 															</ul>

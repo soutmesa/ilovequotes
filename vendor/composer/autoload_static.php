@@ -10,12 +10,14 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
+        '6d394c3a532652dafb4dd296ba6a3f0b' => __DIR__ . '/../..' . '/app/Http/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -90,6 +92,7 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'ClassPreloader\\' => 15,
             'Carbon\\' => 7,
         ),
@@ -234,6 +237,10 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'ClassPreloader\\' => 
         array (
             0 => __DIR__ . '/..' . '/classpreloader/classpreloader/src',
@@ -286,11 +293,16 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
     public static $classMap = array (
         'AlterCategoriesAddColums' => __DIR__ . '/../..' . '/database/migrations/2017_03_01_042317_alter_categories_add_colums.php',
         'AlterPostsAddCategoryIdColumn' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_073544_alter_posts_add_category_id_column.php',
+        'AlterTablePostsAddColumnUserId' => __DIR__ . '/../..' . '/database/migrations/2017_03_07_085349_alter_table_posts_add_column_user_id.php',
         'AlterUsersAddRoleIdColumn' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_074332_alter_users_add_role_id_column.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateTableCategoriesPosts' => __DIR__ . '/../..' . '/database/migrations/2017_03_01_065420_create_table_categories_posts.php',
         'CreateTableCategory' => __DIR__ . '/../..' . '/database/migrations/2017_02_28_073818_create_table_category.php',
+        'CreateTablePermissionRole' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_145003_create_table_permission_role.php',
+        'CreateTablePermissions' => __DIR__ . '/../..' . '/database/migrations/2017_03_02_141327_create_table_permissions.php',
+        'CreateTablePostUser' => __DIR__ . '/../..' . '/database/migrations/2017_03_07_084017_create_table_post_user.php',
         'CreateTablePosts' => __DIR__ . '/../..' . '/database/migrations/2017_02_23_074157_create_table_posts.php',
+        'CreateTableRoleUser' => __DIR__ . '/../..' . '/database/migrations/2017_03_03_042239_create_table_role_user.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'EntrustSetupTables' => __DIR__ . '/../..' . '/database/migrations/2017_02_01_073644_entrust_setup_tables.php',
@@ -673,6 +685,7 @@ class ComposerStaticInitf134aa6c1dab92ff511560acf2386f02
         'PHP_Token_NEW' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NS_C' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NS_SEPARATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PHP_Token_NULLSAFE_OBJECT_OPERATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_NUM_STRING' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_OBJECT_CAST' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_OBJECT_OPERATOR' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
