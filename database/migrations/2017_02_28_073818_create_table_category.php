@@ -13,11 +13,14 @@ class CreateTableCategory extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $table->increments('category_id');
-            $table->string('cate_name', 30)->unique();
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('categories'))
+        {
+            Schema::create('categories', function (Blueprint $table) {
+                $table->increments('category_id');
+                $table->string('cate_name', 30)->unique();
+                $table->timestamps();
+            });
+        }
     }
 
     /**
