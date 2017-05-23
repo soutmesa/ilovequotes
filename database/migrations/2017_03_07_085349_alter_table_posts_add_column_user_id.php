@@ -14,7 +14,7 @@ class AlterTablePostsAddColumnUserId extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->after('title');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
         });
     }
