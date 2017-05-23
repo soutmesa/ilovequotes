@@ -36,7 +36,8 @@ class EntrustPermission
 	public function handle($request, Closure $next, $permissions)
 	{
 		if ($this->auth->guest() || !$request->user()->can(explode('|', $permissions))) {
-			abort(403);
+			// abort(403);
+			return redirect()->back()->withMessage('Permission Denied!!!');
 		}
 
 		return $next($request);

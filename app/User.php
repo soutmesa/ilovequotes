@@ -24,7 +24,6 @@ class User extends Authenticatable
         'gender',
         'email',
         'marital_status',
-        'role_id',
         'date_of_birth',
         'phone',
         'password',
@@ -33,6 +32,16 @@ class User extends Authenticatable
         'place_of_birth',
         'profile',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        return $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function setPasswordTokenAttribute($password_token)
+    {
+        return $this->attributes['password_token'] = $this->attributes['password'];
+    }
 
     public function roles()
     {

@@ -38,7 +38,7 @@ class EntrustAbility
 	public function handle($request, Closure $next, $roles, $permissions, $validateAll = false)
 	{
 		if ($this->auth->guest() || !$request->user()->ability(explode('|', $roles), explode('|', $permissions), array('validate_all' => $validateAll))) {
-			abort(403);
+			abort(504);
 		}
 
 		return $next($request);

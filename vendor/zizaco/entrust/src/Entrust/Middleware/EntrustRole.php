@@ -36,7 +36,7 @@ class EntrustRole
 	public function handle($request, Closure $next, $roles)
 	{
 		if ($this->auth->guest() || !$request->user()->hasRole(explode('|', $roles))) {
-			abort(403);
+			abort(504);
 		}
 
 		return $next($request);
