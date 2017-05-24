@@ -16,13 +16,13 @@ class userController extends Controller
         $users = User::with('roles')
             ->orderBy('created_at', 'desc')
             ->get();
-        return view('users.index', ['users' => $users]);
+        return view('admin.users.index', ['users' => $users]);
     }
 
     public function create()
     {
         $roles = DB::table('roles')->get();
-        return view("users.create", ['roles' => $roles]);
+        return view("admin.users.create", ['roles' => $roles]);
     }
 
     public function store(Request $request)
@@ -59,7 +59,7 @@ class userController extends Controller
     public function show($id)
     {
         $user = User::with('roles')->findOrFail($id);
-        return view('users.profile', compact('user'));
+        return view('admin.users.profile', compact('user'));
     }
 
     public function edit($id)
@@ -73,7 +73,7 @@ class userController extends Controller
         if($auth_id==$id || false !== (array_search('admin', $arr_roles)) || false !== (array_search('manager', $arr_roles)) || false !== (array_search('super user', $arr_roles))){
             $roles = DB::table('roles')->get();
             $user = User::with('roles')->findOrFail($id);
-            return view('users.edit', ['user' => $user, 'roles' => $roles]);
+            return view('admin.users.edit', ['user' => $user, 'roles' => $roles]);
         }else{
             return redirect('users')->with('back','You are not allow to edit this user');
         }
@@ -162,7 +162,7 @@ class userController extends Controller
     public function upload($id)
     {
         $user = User::findOrFail($id);
-        return view('users.upload', compact('user'));
+        return view('admin.users.upload', compact('user'));
     }
 
     public function imageUpload(Request $request, $id)

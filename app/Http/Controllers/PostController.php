@@ -16,13 +16,13 @@ class PostController extends Controller
     {
         $posts = Post::with('categories', 'user')->orderBy('id')->get();
 
-        return view('posts.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     public function create()
     {
         $categories = DB::table('categories')->get();
-        return view("posts.create", compact('categories'));
+        return view("admin.posts.create", compact('categories'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('posts.show', compact('post'));
+        return view('admin.posts.show', compact('post'));
     }
 
     public function edit($id)
@@ -56,7 +56,7 @@ class PostController extends Controller
         $posted_by = $post->user->id;
         if($auth_id==$posted_by || false !== (array_search('admin', $arr_roles)) || false !== (array_search('manager', $arr_roles)) || false !== (array_search('super user', $arr_roles))){
             $categories = Category::get();
-            return view('posts.edit', ['post' => $post, 'categories' => $categories]);
+            return view('admin.posts.edit', ['post' => $post, 'categories' => $categories]);
         }else{
             return redirect('posts')->with('back','You are not allow to edit this post');
         }

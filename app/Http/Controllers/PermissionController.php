@@ -16,7 +16,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = DB::table('permissions')->get();
-        return view('permissions.index', compact('permissions'));
+        return view('admin.permissions.index', compact('permissions'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('permissions.create');
+        return view('admin.permissions.create');
     }
 
     /**
@@ -51,7 +51,7 @@ class PermissionController extends Controller
     public function show($id)
     {
         $permission = Permission::findOrFail($id);
-        return view('permissions.show', compact('permission'));
+        return view('admin.permissions.show', compact('permission'));
     }
 
     /**
@@ -63,7 +63,7 @@ class PermissionController extends Controller
     public function edit($id)
     {
         $permission = Permission::findOrFail($id);
-        return view('permissions.edit', compact('permission'));
+        return view('admin.permissions.edit', compact('permission'));
     }
 
     /**
